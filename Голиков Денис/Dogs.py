@@ -15,7 +15,7 @@ def get_dog_image():
         # Переменную data кладем ответ в формате json
         data = response.json()
         # возвращаем информацию о строке с картинкой
-        return data("message")
+        return data["message"]
     except Exception as e:
         mb.showerror("Ошибка", f"Возникла ошибка {e} при запросе к API ")
         return None
@@ -23,7 +23,7 @@ def get_dog_image():
 
 def show_image():
     # Получаем ссылку на изображение с помощью другой функции
-    image_url = get_dog_image()
+        image_url = get_dog_image()
         if image_url:
             try:
                 # ответ = запросу получаем из интернета что-то по ссылке
