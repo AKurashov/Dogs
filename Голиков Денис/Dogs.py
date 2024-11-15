@@ -35,8 +35,9 @@ def show_image():
                 img_data = BytesIO(response.content)
                 # Обрабатываем с помощью pillow
                 img = Image.open(img_data)
+                img_size = (int(width_spinbox.get()),int(height_spinbox.get()))
                 #Зададим размер картинок, чтобы они подгонялись под размер
-                img.thumbnail((300, 300))
+                img.thumbnail(img_size)
                 img = ImageTk.PhotoImage(img)
                 #Загружаем её на метку
                 label.config(image=img)
@@ -51,7 +52,7 @@ def progr():
     window.after(3000, show_image)
 window = Tk()
 window.title("Картинки с собачками")
-window.geometry("360x420")
+window.geometry("800x600")
 
 label = ttk.Label()
 label.pack(pady = 10)
@@ -60,5 +61,14 @@ button = ttk.Button(text = "Загрузить изображение", command=
 button.pack(pady=10)
 progress = ttk.Progressbar(mode = "determinate", length=300)
 progress.pack(pady = 10)
+
+width_level = ttk.Label(text="Ширина:")
+width_level.pack(side = "left", padx=(0, 10))
+width_spinbox = ttk.Spinbox(from_=200, to=500, increment=50, width=5)
+width_spinbox.pack(side = "left", padx=(0, 10))
+height_label = ttk.Label(text="Высота")
+height_label.pack(side = "left", padx=(0, 10))
+height_spinbox = ttk.Spinbox(from_=200, to=500, increment=50, width=5)
+height_spinbox.pack(side = "left", padx=(0, 10))
 
 window.mainloop()
